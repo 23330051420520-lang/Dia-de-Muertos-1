@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Día de Muertos - Vue.js</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <style>
+    body{
+      margin:0;
+      font-family: Arial, sans-serif;
+      background:#fff8ef;
+      line-height:1.6;
+    }
+
+    header{
+      background:linear-gradient(135deg, #6a1b9a, #f57c00);
+      color:white;
+      padding:30px 20px;
+      text-align:center;
+    }
+
+    nav{
+      background:#3e2723;
+      text-align:center;
+      padding:10px;
+    }
+
+    nav button{
+      background:#ff9800;
+      border:none;
+      color:white;
+      padding:10px 15px;
+      margin:5px;
+      border-radius:8px;
+      cursor:pointer;
+      font-weight:bold;
+    }
+
+    nav button:hover{
+      background:#fb8c00;
+    }
+
+    main{
+      padding:20px;
+      max-width:1100px;
+      margin:auto;
+    }
+
+    section{
+      margin-bottom:30px;
+      background:white;
+      padding:20px;
+      border-radius:15px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h2{ color:#6a1b9a; }
+
+    .galeria{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+      gap:15px;
+      margin-top:15px;
+    }
+
+    .galeria img{
+      width:100%;
+      border-radius:12px;
+      height:180px;
+      object-fit:cover;
+      background:#ddd;
+    }
+
+    .elemento{
+      margin-bottom:15px;
+      padding:10px;
+      border-left:5px solid #f57c00;
+      background:#fff3e0;
+    }
+
+    footer{
+      background:#3e2723;
+      color:white;
+      text-align:center;
+      padding:20px;
+      margin-top:40px;
+    }
+
+    .btn-idioma{
+      background:#4caf50 !important;
+    }
+  </style>
+</head>
+<body>
+
+<div id="app">
+  <header>
+    <h1>{{ t.titulo }}</h1>
+    <p>{{ t.subtitulo }}</p>
+  </header>
+
+  <nav>
+    <button @click="seccion='acerca'">{{ t.btnAcerca }}</button>
+    <button @click="seccion='origen'">{{ t.btnOrigen }}</button>
+    <button @click="seccion='ofrenda'">{{ t.btnOfrenda }}</button>
+    <button @click="seccion='actividades'">{{ t.btnActividades }}</button>
+    <button @click="seccion='conclusion'">{{ t.btnConclusion }}</button>
+    <button style="background:#4caf50;color:white" @click="cambiarIdioma()">
+      {{ idioma === 'es' ? 'English' : 'Español' }}
+    </button>
+  </nav>
+
+  <main>
+
+    <section v-if="seccion==='acerca'">
+      <h2>{{ t.acercaTitulo }}</h2>
+      <p>{{ t.acercaP1 }}</p>
+      <p>{{ t.acercaP2 }}</p>
+
+      <div class="galeria">
+        <img src="A/1.png" >
+        <img src="A/2.png" >
+        <img src="A/3.png" >
+      </div>
+    </section>
+
+    <section v-if="seccion==='origen'">
+      <h2>{{ t.origenTitulo }}</h2>
+      <p>{{ t.origenP1 }}</p>
+      <p>{{ t.origenP2 }}</p>
+    </section>
+
+    <section v-if="seccion==='ofrenda'">
+      <h2>{{ t.ofrendaTitulo }}</h2>
+
+      <div class="elemento" v-for="item in t.elementos" :key="item.titulo">
+        <strong>{{ item.titulo }}</strong>
+        <p>{{ item.texto }}</p>
+      </div>
+
+      <div class="galeria">
+        <img src="A/4.PNG" >
+        <img src="A/5.PNG" >
+        <img src="A/6.PNG" >
+      </div>
+    </section>
+
+    <section v-if="seccion==='actividades'">
+      <h2>{{ t.actividadesTitulo }}</h2>
+      <p>{{ t.actividadesP1 }}</p>
+      <p>{{ t.actividadesP2 }}</p>
+
+      <h3>{{ t.catrinaTitulo }}</h3>
+      <p>{{ t.catrinaP }}</p>
+
+      <div class="galeria">
+        <img src="A/9.png" >
+        <img src="A/10.PNG" >
+        <img src="A/11.PNG" >
+      </div>
+    </section>
+
+    <section v-if="seccion==='conclusion'">
+      <h2>{{ t.conclusionTitulo }}</h2>
+      <p>{{ t.conclusionP1 }}</p>
+      <p>{{ t.conclusionP2 }}</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>AXEL CORONA BASILIO - Vue.js | Día de Muertos</p>
+  </footer>
+</div>
+
+<script>
+const { createApp } = Vue;
+
+createApp({
+  data() {
+    return {
+      seccion: 'acerca',
+      idioma: 'es',
+      textos: {
+        es: {
+          titulo: 'Día de Muertos',
+          subtitulo: 'Tradición, memoria y cultura mexicana',
+          btnAcerca: 'Acerca',
+          btnOrigen: 'Origen',
+          btnOfrenda: 'Ofrenda',
+          btnActividades: 'Actividades',
+          btnConclusion: 'Conclusión',
+
+          acercaTitulo: 'Acerca del Día de Muertos',
+          acercaP1: 'El Día de Muertos es una de las tradiciones más representativas de México. Cada 1 y 2 de noviembre, las familias recuerdan y honran a sus seres queridos que han fallecido, celebrando la vida y la muerte con alegría, respeto y color.',
+          acercaP2: 'Hoy en día, esta fusión de culturas representa la creencia de que la muerte no es el final, sino una parte del ciclo de la vida, donde los recuerdos mantienen viva la presencia de quienes partieron.',
+
+          origenTitulo: 'Origen',
+          origenP1: 'Esta celebración tiene raíces prehispánicas y católicas. Los pueblos originarios ya rendían culto a la muerte mucho antes de la llegada de los españoles.',
+          origenP2: 'Civilizaciones como los mexicas, purépechas y totonacas realizaban rituales dedicados a sus muertos.',
+
+          ofrendaTitulo: 'Elementos de una Ofrenda',
+          elementos: [
+            { titulo: '01 Fotografía del difunto', texto: 'Se coloca en el nivel más alto del altar y representa a la persona que será recordada.' },
+            { titulo: '02 Velas', texto: 'Representan la luz que guía el camino de las almas.' },
+            { titulo: '03 Flor de cempasúchil', texto: 'Su color simboliza al sol y con sus pétalos se marca el camino para las almas.' },
+            { titulo: '04 Pan de muerto', texto: 'Simboliza el ciclo de la vida y la unión entre generaciones.' },
+            { titulo: '05 Agua', texto: 'Se ofrece para calmar la sed del espíritu tras su largo viaje.' },
+            { titulo: '06 Copal e incienso', texto: 'Purifican el ambiente y elevan las oraciones.' }
+          ],
+
+          actividadesTitulo: 'Actividades que nos representan',
+          actividadesP1: 'Cada año se realizan coloridos desfiles de Catrinas y Catrines con trajes tradicionales.',
+          actividadesP2: 'Destacan los desfiles de Ciudad de México, Oaxaca y Aguascalientes.',
+
+          catrinaTitulo: 'La Catrina y el Catrín',
+          catrinaP: 'Representan la muerte con elegancia y orgullo mexicano.',
+
+          conclusionTitulo: 'Conclusión',
+          conclusionP1: 'En 2008, la UNESCO declaró esta festividad como Patrimonio Cultural Inmaterial de la Humanidad.',
+          conclusionP2: 'El Día de Muertos es una manifestación de amor, memoria y respeto.'
+        },
+        en: {
+          titulo: 'Day of the Dead',
+          subtitulo: 'Tradition, memory and Mexican culture',
+          btnAcerca: 'About',
+          btnOrigen: 'Origin',
+          btnOfrenda: 'Offering',
+          btnActividades: 'Activities',
+          btnConclusion: 'Conclusion',
+
+          acercaTitulo: 'About Day of the Dead',
+          acercaP1: 'Day of the Dead is one of Mexico’s most representative traditions. Every November 1st and 2nd, families honor their deceased loved ones.',
+          acercaP2: 'This cultural fusion represents the belief that death is not the end but part of life’s cycle.',
+
+          origenTitulo: 'Origin',
+          origenP1: 'This celebration has pre-Hispanic and Catholic roots.',
+          origenP2: 'Indigenous civilizations honored death long before colonization.',
+
+          ofrendaTitulo: 'Offering Elements',
+          elementos: [
+            { titulo: '01 Photograph of the deceased', texto: 'Placed on the highest level of the altar, representing the honored person.' },
+            { titulo: '02 Candles', texto: 'Guide the souls on their path home.' },
+            { titulo: '03 Marigold flower', texto: 'Its color marks the path for the souls.' },
+            { titulo: '04 Bread of the dead', texto: 'Symbolizes the cycle of life.' },
+            { titulo: '05 Water', texto: 'Offered to quench the spirit’s thirst.' },
+            { titulo: '06 Copal and incense', texto: 'Purify the air and elevate prayers.' }
+          ],
+
+          actividadesTitulo: 'Representative Activities',
+          actividadesP1: 'Colorful parades of Catrinas and Catrines take place every year.',
+          actividadesP2: 'Major celebrations occur in Mexico City, Oaxaca and Aguascalientes.',
+
+          catrinaTitulo: 'La Catrina and El Catrín',
+          catrinaP: 'They represent death with elegance and cultural pride.',
+
+          conclusionTitulo: 'Conclusion',
+          conclusionP1: 'In 2008, UNESCO declared the tradition Intangible Cultural Heritage of Humanity.',
+          conclusionP2: 'Day of the Dead represents love, memory and respect.'
+        }
+      }
+    }
+  },
+  computed:{
+    t(){ return this.textos[this.idioma]; }
+  },
+  methods:{
+    cambiarIdioma(){ this.idioma = this.idioma === 'es' ? 'en' : 'es'; }
+  }
+}).mount('#app');
+</script>
+
+</body>
+</html>

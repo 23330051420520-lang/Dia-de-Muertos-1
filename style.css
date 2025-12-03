@@ -1,0 +1,46 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #fff3e0;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  background: #6a1b9a;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.menu {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.menu button {
+  padding: 10px 15px;
+  margin: 5px;
+  border: none;
+  background: #f57c00;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.menu button:hover {
+  background: #ef6c00;
+}
+
+.contenido {
+  background: white;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.footer {
+  text-align: center;
+  color: #555;
+  margin: 20px 0;
+}
+
