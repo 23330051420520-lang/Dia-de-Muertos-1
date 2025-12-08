@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Día de Muertos - Vue.js</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <style>
+    body{
+      margin:0;
+      font-family: Arial, sans-serif;
+      background:#fff8ef;
+      line-height:1.6;
+    }
+
+    header{
+      background:linear-gradient(135deg, #6a1b9a, #f57c00);
+      color:white;
+      padding:30px 20px;
+      text-align:center;
+    }
+
+    header h1{
+      margin:0;
+      font-size:32px;
+    }
+
+    nav{
+      background:#3e2723;
+      text-align:center;
+      padding:10px;
+    }
+
+    nav button{
+      background:#ff9800;
+      border:none;
+      color:white;
+      padding:10px 15px;
+      margin:5px;
+      border-radius:8px;
+      cursor:pointer;
+      font-weight:bold;
+    }
+
+    nav button:hover{
+      background:#fb8c00;
+    }
+
+    main{
+      padding:20px;
+      max-width:1100px;
+      margin:auto;
+    }
+
+    section{
+      margin-bottom:30px;
+      background:white;
+      padding:20px;
+      border-radius:15px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h2{
+      color:#6a1b9a;
+    }
+
+    .galeria{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+      gap:15px;
+      margin-top:15px;
+    }
+
+    .galeria img{
+      width:100%;
+      border-radius:12px;
+      height:180px;
+      object-fit:cover;
+      background:#ddd;
+    }
+
+    .elemento{
+      margin-bottom:15px;
+      padding:10px;
+      border-left:5px solid #f57c00;
+      background:#fff3e0;
+    }
+
+    footer{
+      background:#3e2723;
+      color:white;
+      text-align:center;
+      padding:20px;
+      margin-top:40px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="app">
+  <header>
+    <h1>Día de Muertos</h1>
+    <p>Tradición, memoria y cultura mexicana</p>
+  </header>
+
+  <nav>
+    <button @click="seccion='acerca'">Acerca</button>
+    <button @click="seccion='origen'">Origen</button>
+    <button @click="seccion='ofrenda'">Ofrenda</button>
+    <button @click="seccion='actividades'">Actividades</button>
+    <button @click="seccion='conclusion'">Conclusión</button>
+  </nav>
+
+  <main>
+
+    <!-- ACERCA -->
+    <section v-if="seccion==='acerca'">
+      <h2>Acerca del Día de Muertos</h2>
+      <p>
+        El Día de Muertos es una de las tradiciones más representativas de México. Cada 1 y 2 de noviembre, las familias recuerdan y honran a sus seres queridos que han fallecido, celebrando la vida y la muerte con alegría, respeto y color.
+      </p>
+      <p>
+        Hoy en día, esta fusión de culturas representa la creencia de que la muerte no es el final, sino una parte del ciclo de la vida, donde los recuerdos mantienen viva la presencia de quienes partieron.
+      </p>
+
+      <div class="galeria">
+        <img src="A/1.png" >
+        <img src="A/2.png" >
+        <img src="A/3.png" >
+      </div>
+    </section>
+
+    <!-- ORIGEN -->
+    <section v-if="seccion==='origen'">
+      <h2>Origen</h2>
+      <p>
+        Esta celebración tiene raíces prehispánicas y católicas. Los pueblos originarios ya rendían culto a la muerte mucho antes de la llegada de los españoles. Con el tiempo, ambas culturas se fusionaron, dando origen a la tradición que hoy conocemos.
+      </p>
+      <p>
+        Civilizaciones como los mexicas, purépechas y totonacas realizaban rituales dedicados a sus muertos, creyendo que el alma emprendía un viaje al más allá acompañada por los elementos que se colocaban en el altar.
+      </p>
+    </section>
+
+    <!-- OFRENDA -->
+    <section v-if="seccion==='ofrenda'">
+      <h2>Elementos de una Ofrenda</h2>
+
+      <div class="elemento">
+        <strong>01 Fotografía del difunto</strong>
+        <p>Se coloca en el nivel más alto del altar y representa a la persona que será recordada. Es el centro de toda la ofrenda.</p>
+      </div>
+
+      <div class="elemento">
+        <strong>02 Velas o veladoras</strong>
+        <p>Representan la luz que guía el camino de las almas hacia su hogar.</p>
+      </div>
+
+      <div class="elemento">
+        <strong>03 Flor de cempasúchil</strong>
+        <p>Su color dorado simboliza al sol y con sus pétalos se marca el camino para las almas.</p>
+      </div>
+
+      <div class="elemento">
+        <strong>04 Pan de muerto</strong>
+        <p>Simboliza el ciclo de la vida y la unión entre generaciones.</p>
+      </div>
+
+      <div class="elemento">
+        <strong>05 Agua</strong>
+        <p>Se ofrece para calmar la sed del espíritu tras su largo viaje.</p>
+      </div>
+
+      <div class="elemento">
+        <strong>06 Copal e incienso</strong>
+        <p>Purifican el ambiente y elevan las oraciones hacia el cielo.</p>
+      </div>
+
+      <div class="galeria">
+        <img src="A/4.PNG" >
+        <img src="A/5.PNG" >
+        <img src="A/6.PNG" >
+      </div>
+
+</video>
+    </section>
+
+    <!-- ACTIVIDADES -->
+    <section v-if="seccion==='actividades'">
+      <h2>Actividades que nos representan</h2>
+      <p>
+        Cada año se realizan coloridos desfiles de Catrinas y Catrines. Miles de personas se visten con trajes tradicionales y maquillaje artístico para rendir homenaje a la vida y la muerte.
+      </p>
+      <p>
+        Destacan los desfiles de la Ciudad de México, Aguascalientes y Oaxaca, donde la música y las flores llenan las calles de tradición.
+      </p>
+
+      <h3>La Catrina y el Catrín</h3>
+      <p>
+        Representan la muerte con elegancia y orgullo mexicano, demostrando que la muerte no distingue clases sociales.
+      </p>
+
+      <div class="galeria">
+        <img src="A/9.png" >
+        <img src="A/10.PNG" >
+        <img src="A/11.PNG" >
+      </div>
+      <p>       .
+  <video width="200" autoplay muted loop>
+  <source src="A/7.mp4" type="video/mp4">
+</video>
+
+<video width="200" autoplay muted loop>
+  <source src="A/8.mp4" type="video/mp4">
+</video>
+
+
+<video width="200" controls autoplay loop>
+  <source src="A/12.mp4" type="video/mp4">
+</video>
+
+<video width="200" autoplay muted loop>
+  <source src="A/13.mp4" type="video/mp4">
+</video>
+
+<video width="200" autoplay muted loop>
+  <source src="A/14.MP4" type="video/mp4">
+</video>
+</p>
+
+
+
+    </section>
+
+    <!-- CONCLUSIÓN -->
+    <section v-if="seccion==='conclusion'">
+      <h2>Conclusión</h2>
+      <p>
+        En 2008, la UNESCO declaró esta festividad como Patrimonio Cultural Inmaterial de la Humanidad, reconociendo su profundo valor simbólico y cultural.
+      </p>
+      <p>
+        El Día de Muertos es una manifestación de amor, memoria y respeto, donde el color, los aromas y la música celebran la vida de quienes partieron.
+      </p>
+
+      <h3>Referencias</h3>
+      <ul>
+        <li>Secretaría de Cultura de México — Día de Muertos</li>
+        <li>INAH</li>
+        <li>UNESCO — Patrimonio Cultural Inmaterial</li>
+        <li>Museo Nacional de Culturas Populares</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>AXEL CORONA BASILIO-Vue.js | Día de Muertos</p>
+  </footer>
+</div>
+
+<script>
+const { createApp } = Vue;
+
+createApp({
+  data() {
+    return {
+      seccion: 'acerca'
+    }
+  }
+}).mount('#app');
+</script>
+
+</body>
+</html>
